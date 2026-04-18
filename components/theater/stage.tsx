@@ -16,7 +16,7 @@ export function Stage() {
                    flex items-center justify-center overflow-hidden"
       >
         {/* Decoraciones estructurales del escenario madera */}
-        <div className="absolute bottom-0 w-full h-[4px] bg-[#050811] shadow-inner"></div>
+        <div className="absolute bottom-0 w-full h-1 bg-[#050811] shadow-inner"></div>
         <div className="absolute top-[2px] left-1/2 -translate-x-1/2 w-[110%] h-8 bg-white/5 blur-lg rounded-full pointer-events-none"></div>
         
         <div className="flex flex-col items-center mt-2">

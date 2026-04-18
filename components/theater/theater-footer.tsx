@@ -43,12 +43,12 @@ export function TheaterFooter() {
           </div>
 
           {/* Derechos y Social */}
-          <div className="col-12 col-md-4 text-center text-md-end">
-            <span className="text-slate-600 text-[10px] uppercase font-bold tracking-widest">
+          <div className="col-12 col-md-4 text-center text-md-end mt-4 mt-md-0">
+            <span className="text-slate-500 text-xs uppercase font-bold tracking-widest block mb-2 md:mb-1">
               © {new Date().getFullYear()} Universidad Nacional de Costa Rica
             </span>
-            <div className="mt-2 text-slate-500 text-[9px] uppercase tracking-tighter">
-              Fundamentos de Programación Web
+            <div className="text-slate-600 text-[11px] uppercase tracking-tighter">
+              Fundamentos de Programación Web | Facultad de Ciencias Exactas
             </div>
           </div>
 

@@ -120,10 +120,29 @@ export function TheaterLayout() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow container-fluid px-2 px-md-4 max-w-6xl mx-auto relative z-10 w-full animate-in fade-in zoom-in duration-700 ease-out pb-12 pt-8">
+      {/* Región de anuncios para lectores de pantalla (Oculta visualmente) */}
+      <div 
+        className="sr-only" 
+        role="status" 
+        aria-live="polite" 
+        aria-atomic="true"
+      >
+        {resolvedCount > 0 
+          ? `Has seleccionado ${resolvedCount} asiento${resolvedCount > 1 ? 's' : ''}: ${selectedLabels.join(', ')}` 
+          : 'No hay asientos seleccionados'}
+      </div>
+
+      <main className="grow container-fluid px-2 px-md-4 max-w-6xl mx-auto relative z-10 w-full animate-in fade-in zoom-in duration-700 ease-out pb-12 pt-8">
         
+        {/* Encabezado semántico oculto si el Stage ya sirve como título visual, 
+            pero necesario para la estructura del documento */}
+        <h1 className="sr-only">Selección de Asientos - Teatro UNA</h1>
+
         {/* Visualización Principal del Teatro con shadcn Card */}
-        <Card className="border-slate-800 bg-[#030712]/80 shadow-2xl backdrop-blur-md overflow-hidden rounded-[2rem]">
+        <Card 
+          id="theater-container"
+          className="border-slate-800 bg-[#030712]/80 shadow-2xl backdrop-blur-md overflow-hidden rounded-[2rem]"
+        >
           <CardContent className="p-4 md:p-8 flex flex-col items-center">
             <Stage />
             
