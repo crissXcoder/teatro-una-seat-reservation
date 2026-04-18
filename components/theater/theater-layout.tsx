@@ -132,7 +132,7 @@ export function TheaterLayout() {
           : 'No hay asientos seleccionados'}
       </div>
 
-      <main className="grow container-fluid px-2 px-md-4 max-w-6xl mx-auto relative z-10 w-full animate-in fade-in zoom-in duration-700 ease-out pb-12 pt-8">
+      <main className="grow w-full max-w-full overflow-hidden px-2 px-md-4 relative z-10 animate-in fade-in zoom-in duration-700 ease-out pb-12 pt-8">
         
         {/* Encabezado semántico oculto si el Stage ya sirve como título visual, 
             pero necesario para la estructura del documento */}
@@ -141,7 +141,7 @@ export function TheaterLayout() {
         {/* Visualización Principal del Teatro con shadcn Card */}
         <Card 
           id="theater-container"
-          className="border-slate-800 bg-[#030712]/80 shadow-2xl backdrop-blur-md overflow-hidden rounded-[2rem]"
+          className="border-slate-800 bg-[#030712]/80 shadow-2xl backdrop-blur-md overflow-hidden rounded-[2rem] mx-auto max-w-6xl"
         >
           <CardContent className="p-4 md:p-8 flex flex-col items-center">
             <Stage />
@@ -157,8 +157,8 @@ export function TheaterLayout() {
           </CardContent>
         </Card>
 
-        {/* Formulario Sticky/Aislado */}
-        <div className="mt-8 flex justify-center sticky bottom-4 z-50">
+        {/* Formulario: Sticky solo en desktop, relativo en móvil para no tapar contenido */}
+        <div className="mt-8 flex justify-center sticky md:bottom-4 z-50">
           <ReservationForm 
             onSuggest={handleSuggest}
             onClear={handleClear}

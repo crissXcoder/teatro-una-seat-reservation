@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="antialiased text-white bg-slate-950" style={{ fontFamily: fontSans }}>
+      <body className="antialiased text-white bg-slate-950 overflow-x-hidden" style={{ fontFamily: fontSans }}>
         {children}
         <Toaster />
       </body>

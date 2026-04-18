@@ -31,7 +31,7 @@ export function SeatItem({ seat, isSelected, isSuggested, onClick }: SeatItemPro
       }
       className={cn(
         "relative flex flex-col items-center justify-start focus:outline-none transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)] group",
-        "w-[32px] h-[32px] md:w-[40px] md:h-[40px] rounded-sm",
+        "w-[28px] h-[28px] md:w-[40px] md:h-[40px] rounded-sm",
         // Focus rings de accesibilidad de alto contraste
         "focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
       )}

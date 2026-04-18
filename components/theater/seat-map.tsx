@@ -27,12 +27,12 @@ export function SeatMap({ matrix, selectedSeatIds, suggestedSeatIds, onSeatClick
       </div>
 
       <div className="w-full max-w-full overflow-x-auto pb-8 pt-4 px-4 scrollbar-thin scrollbar-thumb-indigo-900/50 scrollbar-track-transparent">
-        <div className="flex flex-col items-center justify-center gap-5 md:gap-7 min-w-max mx-auto">
+        <div className="flex flex-col items-center justify-center gap-4 md:gap-7 min-w-max mx-auto">
           
           {matrix.map((row, rowIndex) => (
             <div 
               key={`row-${rowIndex}`} 
-              className="flex items-center gap-4 md:gap-8 group/row"
+              className="flex items-center gap-3 md:gap-8 group/row"
             >
               {/* Etiqueta Izquierda */}
               <div 
@@ -44,7 +44,7 @@ export function SeatMap({ matrix, selectedSeatIds, suggestedSeatIds, onSeatClick
 
               {/* Contenedor Físico de Asientos por fila */}
               <div 
-                className="flex gap-3 md:gap-4 items-end"
+                className="flex gap-2 md:gap-4 items-end"
                 role="group"
                 aria-label={`Fila ${row[0]?.label.split('-')[0]}`}
               >
