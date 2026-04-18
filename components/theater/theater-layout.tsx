@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Stage } from "./stage";
 import { SeatMap } from "./seat-map";
 import { ReservationForm } from "./reservation-form";
+import { SeatLegend } from "./seat-legend";
 import { TheaterFooter } from "./theater-footer";
 import { initialSeatData } from "@/data/seats";
 import { SeatMatrix, Seat } from "@/lib/types";
@@ -118,36 +119,40 @@ export function TheaterLayout() {
     .map(s => s.label);
 
   return (
-    <div className="container-fluid px-2 px-md-4 max-w-6xl mx-auto relative z-10 w-full animate-in fade-in zoom-in duration-700 ease-out pb-12">
-      
-      {/* Visualización Principal del Teatro con shadcn Card */}
-      <Card className="border-slate-800 bg-[#030712]/80 shadow-2xl backdrop-blur-md overflow-hidden rounded-[2rem]">
-        <CardContent className="p-4 md:p-8 flex flex-col items-center">
-          <Stage />
-          
-          <SeatMap 
-            matrix={matrix} 
-            selectedSeatIds={selectedSeatIds} 
-            suggestedSeatIds={suggestedSeatIds}
-            onSeatClick={handleSeatClick}
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-grow container-fluid px-2 px-md-4 max-w-6xl mx-auto relative z-10 w-full animate-in fade-in zoom-in duration-700 ease-out pb-12 pt-8">
+        
+        {/* Visualización Principal del Teatro con shadcn Card */}
+        <Card className="border-slate-800 bg-[#030712]/80 shadow-2xl backdrop-blur-md overflow-hidden rounded-[2rem]">
+          <CardContent className="p-4 md:p-8 flex flex-col items-center">
+            <Stage />
+            
+            <SeatMap 
+              matrix={matrix} 
+              selectedSeatIds={selectedSeatIds} 
+              suggestedSeatIds={suggestedSeatIds}
+              onSeatClick={handleSeatClick}
+            />
+            
+            <SeatLegend />
+          </CardContent>
+        </Card>
+
+        {/* Formulario Sticky/Aislado */}
+        <div className="mt-8 flex justify-center sticky bottom-4 z-50">
+          <ReservationForm 
+            onSuggest={handleSuggest}
+            onClear={handleClear}
+            onConfirm={handleConfirm}
+            selectedCount={resolvedCount}
+            selectedLabels={selectedLabels}
+            selectionMode={selectionMode as 'manual' | 'suggested' | 'none'}
           />
-          
-          <TheaterFooter />
-        </CardContent>
-      </Card>
+        </div>
 
-      {/* Formulario Sticky/Aislado */}
-      <div className="mt-8 flex justify-center sticky bottom-4 z-50">
-        <ReservationForm 
-          onSuggest={handleSuggest}
-          onClear={handleClear}
-          onConfirm={handleConfirm}
-          selectedCount={resolvedCount}
-          selectedLabels={selectedLabels}
-          selectionMode={selectionMode as 'manual' | 'suggested' | 'none'}
-        />
-      </div>
+      </main>
 
+      <TheaterFooter />
     </div>
   );
 }

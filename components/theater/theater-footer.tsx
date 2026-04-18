@@ -3,61 +3,53 @@ import { Separator } from "@/components/ui/separator";
 
 export function TheaterFooter() {
   return (
-    <footer className="mt-14 w-full pt-8">
-      <Separator className="mb-8" />
-      <div className="container-fluid px-0">
-        <div className="row g-5 pb-4">
+    <footer className="w-full py-12 px-6 mt-12 bg-slate-950/20 border-t border-slate-800/30">
+      <div className="max-w-6xl mx-auto">
+        <div className="row g-4 align-items-center">
           
-          {/* Columna 1: Leyenda Visual (Con UI/UX simplificada e iconos intuitivos) */}
-          <div className="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-start justify-content-center">
-            <h4 className="text-slate-600 font-bold mb-4 text-[10px] uppercase tracking-[0.2em]">
-              Guía de Estados
-            </h4>
-            <div className="d-flex flex-wrap justify-content-center justify-content-md-start gap-x-5 gap-y-3">
-              
-              <div className="d-flex align-items-center gap-2 group cursor-default">
-                <div className="w-3.5 h-3.5 bg-slate-400 rounded-[3px] border border-white/20 shadow-sm transition-transform group-hover:scale-110"></div>
-                <span className="text-[11px] font-bold text-slate-400 tracking-wider uppercase">Disponible</span>
+          {/* Branding y Logo */}
+          <div className="col-12 col-md-4 text-center text-md-start">
+            <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-3">
+              <div className="p-2 bg-indigo-600/20 rounded-lg">
+                <Globe size={24} className="text-indigo-400" />
               </div>
-              
-              <div className="d-flex align-items-center gap-2 group cursor-default">
-                <div className="w-3.5 h-3.5 bg-slate-800 rounded-[3px] border border-slate-700/50 opacity-60 shadow-inner group-hover:opacity-80 transition-opacity"></div>
-                <span className="text-[11px] font-bold text-slate-500 tracking-wider uppercase">Ocupado</span>
-              </div>
-              
-              <div className="d-flex align-items-center gap-2 group cursor-default">
-                <div className="w-3.5 h-3.5 bg-indigo-500 rounded-[3px] shadow-[0_0_12px_rgba(99,102,241,0.5)] border border-indigo-400 transition-transform group-hover:scale-110"></div>
-                <span className="text-[11px] font-bold text-indigo-400 tracking-wider uppercase">Tu Selección</span>
-              </div>
-              
-              <div className="d-flex align-items-center gap-2 group cursor-default">
-                <div className="w-3.5 h-3.5 bg-emerald-500 rounded-[3px] shadow-[0_0_15px_rgba(16,185,129,0.4)] border border-emerald-400 animate-pulse transition-transform group-hover:scale-110"></div>
-                <span className="text-[11px] font-bold text-emerald-400 tracking-wider uppercase">Sugerido</span>
-              </div>
+              <span className="text-xl font-black tracking-tighter text-white">TEATRO-UNA</span>
+            </div>
+            <p className="text-slate-500 text-xs font-light max-w-xs mx-auto mx-md-0">
+              Excelencia escénica y formación académica. Parte fundamental de la identidad cultural de la Universidad Nacional.
+            </p>
+          </div>
 
+          {/* Enlaces / Info Central */}
+          <div className="col-12 col-md-4 text-center">
+            <div className="d-flex flex-column gap-2 text-slate-400 text-sm">
+              <div className="d-flex align-items-center justify-content-center gap-2">
+                <MapPin size={14} className="text-indigo-500" />
+                <span>Av. Universidad, Campus Central</span>
+              </div>
+              <div className="d-flex align-items-center justify-content-center gap-2">
+                <Phone size={14} className="text-indigo-500" />
+                <a href="tel:+50622001111" className="text-inherit text-decoration-none hover:text-white transition-colors">
+                  +506 2200-UNA1
+                </a>
+              </div>
+              <div className="d-flex align-items-center justify-content-center gap-2">
+                <Mail size={14} className="text-indigo-500" />
+                <a href="mailto:reservas@teatro.una.ac.cr" className="text-inherit text-decoration-none hover:text-white transition-colors">
+                  reservas@teatro.una.ac.cr
+                </a>
+              </div>
             </div>
           </div>
-          
-          {/* Columna 2: Información de Contacto del Teatro */}
-          <div className="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-end text-center text-md-right mt-5 mt-md-0">
-            <h4 className="text-slate-300 font-bold mb-3 d-flex flex-col flex-md-row align-items-center justify-content-center justify-content-md-end gap-2 text-sm tracking-wide">
-              <Globe size={18} className="text-indigo-400 mb-1 mb-md-0" />
-              <span>TEATRO-UNA</span>
-            </h4>
-            <ul className="list-unstyled text-slate-400 text-sm d-flex flex-column align-items-center align-items-md-end gap-2 mb-0">
-              <li className="d-flex align-items-center justify-content-center justify-content-md-end gap-2 hover:text-slate-200 transition-colors cursor-default">
-                <span className="order-2 order-md-1">Av. Universidad, Campus Central</span>
-                <MapPin size={15} className="text-slate-500 order-1 order-md-2" />
-              </li>
-              <li className="d-flex align-items-center justify-content-center justify-content-md-end gap-2 hover:text-slate-200 transition-colors">
-                <a href="tel:+50622001111" className="text-decoration-none text-inherit order-2 order-md-1">+506 2200-UNA1</a>
-                <Phone size={15} className="text-slate-500 order-1 order-md-2" />
-              </li>
-              <li className="d-flex align-items-center justify-content-center justify-content-md-end gap-2 hover:text-slate-200 transition-colors">
-                <a href="mailto:reservas@teatro.una.ac.cr" className="text-decoration-none text-inherit order-2 order-md-1">reservas@teatro.una.ac.cr</a>
-                <Mail size={15} className="text-slate-500 order-1 order-md-2" />
-              </li>
-            </ul>
+
+          {/* Derechos y Social */}
+          <div className="col-12 col-md-4 text-center text-md-end">
+            <span className="text-slate-600 text-[10px] uppercase font-bold tracking-widest">
+              © {new Date().getFullYear()} Universidad Nacional de Costa Rica
+            </span>
+            <div className="mt-2 text-slate-500 text-[9px] uppercase tracking-tighter">
+              Fundamentos de Programación Web
+            </div>
           </div>
 
         </div>
