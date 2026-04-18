@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TEATRO-UNA: Sistema de Selección de Asientos
 
-## Getting Started
+Este proyecto es una evaluación académica para el curso de **Fundamentos de Programación Web**.
+Implementa un sistema moderno de selección de asientos utilizando un algoritmo de proximidad al centro, desarrollado completamente en el Frontend sin bases de datos adicionales.
 
-First, run the development server:
+## Tecnologías Utilizadas
+- **Next.js (App Router)**: Framework principal para estructurar y renderizar la aplicación web.
+- **React**: Biblioteca base para las interacciones y el estado.
+- **Tailwind CSS & shadcn/ui**: Componentes accesibles, utilidades potentes y diseño UI/UX nivel "Pro Max".
+- **Bootstrap 5**: Integrado para demostrar el uso de su sistema de clases (Layout, Grid y utilidades).
+- **JavaScript Moderno**: Lógica de asignación de butacas contiguas sugeridas calculada en memoria mediante un algoritmo propio de distancias.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Estructura del Proyecto
+- `/app`: Configuración principal de Next.js App Router (Layout general de la app y rutas).
+- `/components/ui`: Componentes base instalados desde `shadcn/ui` (botones, tooltips, toasts, etc.).
+- `/components/teatro`: Componentes de dominio específicos (SeatGrid, Seat, Stage, Summary).
+- `/lib`: Utilidades de la aplicación.
+- `/data`: Datos estáticos iniciales o de la estructura simulada del teatro.
+- `/styles`: Hoja de estilos adicionales si se requiere complementar Bootstrap + Tailwind.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instrucciones de Instalación
+1. Clonar este repositorio.
+2. Hacer `npm install`.
+3. Levantar dev server con `npm run dev`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Objetivo
+Cumplir los requisitos técnicos del curso demostrando un equilibrio entre HTML semántico, estilos dinámicos (CSS/Tailwind/Bootstrap), y un fuerte dominio de funciones en JavaScript.
