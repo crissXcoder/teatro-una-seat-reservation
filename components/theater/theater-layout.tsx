@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Stage } from "./stage";
 import { SeatMap } from "./seat-map";
 import { ReservationForm } from "./reservation-form";
@@ -8,28 +8,30 @@ import { TheaterFooter } from "./theater-footer";
 import { initialSeatData } from "@/data/seats";
 import { SeatMatrix, Seat } from "@/lib/types";
 import { suggest } from "@/lib/suggest-seats";
-import { AlertCircle, CheckCircle2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
 
 export function TheaterLayout() {
-  const [matrix, setMatrix] = useState<SeatMatrix>([]);
+  const [matrix, setMatrix] = useState<SeatMatrix>(initialSeatData);
   
   // Manejo de estado avanzado con Set<number> para ids,
   // optimizando los accesos o() vs Array.includes().
   const [selectedSeatIds, setSelectedSeatIds] = useState<Set<number>>(new Set());
   const [suggestedSeatIds, setSuggestedSeatIds] = useState<Set<number>>(new Set());
   
-  // Notificaciones visuales (toast improvisado amigable)
-  const [feedback, setFeedback] = useState<{type: 'error' | 'success', msg: string} | null>(null);
+  // Gestión de notificaciones profesionales via shadcn
+  const { toast } = useToast();
 
-  useEffect(() => {
-    setMatrix(initialSeatData);
-  }, []);
+  // Inicialización directa en useState para evitar re-renders innecesarios en la hidratación
+  // useEffect removido por robustez técnica.
 
-  // Utilidad para mostrar notificaciones con auto-cierre
+  // Utilidad para mostrar notificaciones profesionales
   const showFeedback = (type: 'error' | 'success', msg: string) => {
-    setFeedback({ type, msg });
-    setTimeout(() => setFeedback(null), 4000);
+    toast({
+      variant: type === 'error' ? 'destructive' : 'success',
+      title: type === 'error' ? 'Atención' : '¡Éxito!',
+      description: msg,
+    });
   };
 
   const handleSeatClick = (seat: Seat) => {
@@ -38,7 +40,6 @@ export function TheaterLayout() {
       setSuggestedSeatIds(new Set());
     }
 
-    // Toggle sobre el Set inmutable de React
     setSelectedSeatIds((prev) => {
       const nextSet = new Set(prev);
       if (nextSet.has(seat.id)) {
@@ -48,11 +49,9 @@ export function TheaterLayout() {
       }
       return nextSet;
     });
-    setFeedback(null);
   };
 
   const handleSuggest = (quantity: number) => {
-    setFeedback(null); // Resetea feed
     
     // Validar UX local antes de mandar al motor puro (defensa anti-robusteza)
     if (!quantity || quantity <= 0 || quantity > 20) {
@@ -78,7 +77,6 @@ export function TheaterLayout() {
   const handleClear = () => {
     setSelectedSeatIds(new Set());
     setSuggestedSeatIds(new Set());
-    setFeedback(null);
   };
 
   const handleConfirm = () => {
@@ -99,7 +97,11 @@ export function TheaterLayout() {
       );
     });
 
-    showFeedback('success', `¡Reserva de ${toConfirmIds.size} butaca(s) confirmada exitosamente!`);
+    const labelsConfirmed = Array.from(toConfirmIds).map(id => 
+      matrix.flat().find(s => s.id === id)?.label
+    ).filter(Boolean).join(', ');
+
+    showFeedback('success', `¡Reserva de ${toConfirmIds.size} butaca(s) [${labelsConfirmed}] confirmada exitosamente!`);
     
     // Resetear el front
     setSelectedSeatIds(new Set());
@@ -107,40 +109,32 @@ export function TheaterLayout() {
   };
 
   const resolvedCount = Math.max(selectedSeatIds.size, suggestedSeatIds.size);
+  const activeIds = suggestedSeatIds.size > 0 ? suggestedSeatIds : selectedSeatIds;
+  const selectionMode = suggestedSeatIds.size > 0 ? 'suggested' : (selectedSeatIds.size > 0 ? 'manual' : 'none');
+  
+  // Mapeo eficiente de etiquetas para el resumen visual
+  const selectedLabels = matrix.flat()
+    .filter(s => activeIds.has(s.id))
+    .map(s => s.label);
 
   return (
     <div className="container-fluid px-2 px-md-4 max-w-6xl mx-auto relative z-10 w-full animate-in fade-in zoom-in duration-700 ease-out pb-12">
       
-      {/* Sistema de notificación Flotante (Soft Toast) */}
-      {feedback && (
-        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-100 animate-in slide-in-from-top-12 fade-in duration-300">
-          <div className={cn(
-            "flex items-center gap-3 px-6 py-3 rounded-full shadow-2xl border backdrop-blur-md font-medium max-w-[90vw] text-center",
-            feedback.type === 'error' 
-              ? "bg-red-950/90 border-red-500/50 text-red-200" 
-              : "bg-emerald-950/90 border-emerald-500/50 text-emerald-200"
-          )}>
-            {feedback.type === 'error' ? <AlertCircle size={18} /> : <CheckCircle2 size={18} />}
-            {feedback.msg}
-          </div>
-        </div>
-      )}
-
-      {/* Visualización Principal del Teatro */}
-      <div className="bg-[#030712]/80 border border-slate-800 rounded-[2rem] p-4 md:p-8 shadow-2xl backdrop-blur-md flex flex-col items-center">
-        
-        <Stage />
-        
-        <SeatMap 
-          matrix={matrix} 
-          selectedSeatIds={selectedSeatIds} 
-          suggestedSeatIds={suggestedSeatIds}
-          onSeatClick={handleSeatClick}
-        />
-        
-        <TheaterFooter />
-        
-      </div>
+      {/* Visualización Principal del Teatro con shadcn Card */}
+      <Card className="border-slate-800 bg-[#030712]/80 shadow-2xl backdrop-blur-md overflow-hidden rounded-[2rem]">
+        <CardContent className="p-4 md:p-8 flex flex-col items-center">
+          <Stage />
+          
+          <SeatMap 
+            matrix={matrix} 
+            selectedSeatIds={selectedSeatIds} 
+            suggestedSeatIds={suggestedSeatIds}
+            onSeatClick={handleSeatClick}
+          />
+          
+          <TheaterFooter />
+        </CardContent>
+      </Card>
 
       {/* Formulario Sticky/Aislado */}
       <div className="mt-8 flex justify-center sticky bottom-4 z-50">
@@ -149,6 +143,8 @@ export function TheaterLayout() {
           onClear={handleClear}
           onConfirm={handleConfirm}
           selectedCount={resolvedCount}
+          selectedLabels={selectedLabels}
+          selectionMode={selectionMode as 'manual' | 'suggested' | 'none'}
         />
       </div>
 

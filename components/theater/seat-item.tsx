@@ -35,8 +35,8 @@ export function SeatItem({ seat, isSelected, isSuggested, onClick }: SeatItemPro
           "w-full h-[45%] rounded-t-xl transition-all duration-300 shadow-[inset_0_-2px_4px_rgba(0,0,0,0.3)]",
           seat.estado && "bg-[#1e293b] border-slate-700 opacity-60 cursor-not-allowed",
           !seat.estado && !isSelected && !isSuggested && "bg-slate-400 group-hover:bg-slate-300",
-          isSelected && "bg-indigo-500 shadow-[0_0_12px_rgba(99,102,241,0.7)] border-t border-indigo-300",
-          isSuggested && "bg-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.7)] border-t border-emerald-300"
+          isSelected && "bg-indigo-500 shadow-[0_0_20px_rgba(99,102,241,0.8)] border-t border-indigo-300",
+          isSuggested && "bg-[#10b981] shadow-[0_0_25px_rgba(16,185,129,0.8)] border-t border-emerald-300"
         )}
       ></div>
 
@@ -53,8 +53,10 @@ export function SeatItem({ seat, isSelected, isSuggested, onClick }: SeatItemPro
         {/* Identificador numérico que aparece suavemente y sin estorbar el diseño */}
         {!seat.estado && (
           <span className={cn(
-            "absolute inset-0 flex items-center pt-3 justify-center text-[10px] md:text-xs font-bold transition-all duration-300 text-slate-900",
-            (isSelected || isSuggested) ? "opacity-100 text-white/90 drop-shadow-sm" : "opacity-0 group-hover:opacity-100"
+            "absolute inset-0 flex items-center pt-3 justify-center text-[10px] md:text-xs font-bold transition-all duration-300",
+            (isSelected || isSuggested) 
+              ? "opacity-100 text-white/90 drop-shadow-sm scale-110" 
+              : "opacity-40 text-slate-900 group-hover:opacity-100 group-hover:text-slate-800"
           )}>
             {seat.label.split('-')[1]}
           </span>

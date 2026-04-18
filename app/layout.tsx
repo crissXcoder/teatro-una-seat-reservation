@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 // Se importa Bootstrap antes de globals.css para que Tailwind 
 // pueda sobreescribir utilidades si hay colisiones directas.
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Definición de fuentes del sistema de alta fidelidad para evitar dependencias de red externas
+const fontSans = "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
 
 export const metadata: Metadata = {
   title: "TEATRO-UNA | Selección de Asientos",
-  description: "Plataforma de reservación y sugerencia inteligente de asientos contiguos del Teatro UNA.",
+  description: "Plataforma de reservación y sugerencia inteligente de asientos contiguos del TEATRO-UNA.",
 };
 
 export default function RootLayout({
@@ -27,8 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-foreground bg-background`}>
+      <body className="antialiased text-white bg-slate-950" style={{ fontFamily: fontSans }}>
         {children}
+        <Toaster />
       </body>
     </html>
   );

@@ -16,7 +16,7 @@ export default function Home() {
         </div>
 
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-white via-indigo-100 to-indigo-300 tracking-tight leading-tight mb-5 drop-shadow-sm">
-          TEATRO UNA
+          TEATRO-UNA
         </h1>
         <p className="text-slate-400 text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
           Bienvenido a la plataforma de selección premium. Escoge tus butacas de manera manual o utiliza nuestro motor algorítmico guiado para ubicarte lo más céntrico posible.

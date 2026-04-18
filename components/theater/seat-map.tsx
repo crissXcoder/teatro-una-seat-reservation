@@ -22,10 +22,10 @@ export function SeatMap({ matrix, selectedSeatIds, suggestedSeatIds, onSeatClick
           {matrix.map((row, rowIndex) => (
             <div 
               key={`row-${rowIndex}`} 
-              className="flex items-center gap-4 md:gap-6 group"
+              className="flex items-center gap-4 md:gap-6 group/row"
             >
               {/* Etiqueta Izquierda (Alineación perfecta y tipografía legible) */}
-              <div className="w-8 flex justify-center items-center text-slate-600/70 group-hover:text-slate-300 font-bold text-sm transition-colors duration-300 select-none">
+              <div className="w-8 flex justify-center items-center text-slate-600/70 group-hover/row:text-slate-300 font-bold text-sm transition-colors duration-300 select-none">
                 {row[0]?.label.split('-')[0]}
               </div>
 
@@ -43,7 +43,7 @@ export function SeatMap({ matrix, selectedSeatIds, suggestedSeatIds, onSeatClick
               </div>
 
               {/* Etiqueta Derecha (Alineación perfecta) */}
-              <div className="w-8 flex justify-center items-center text-slate-600/70 group-hover:text-slate-300 font-bold text-sm transition-colors duration-300 select-none">
+              <div className="w-8 flex justify-center items-center text-slate-600/70 group-hover/row:text-slate-300 font-bold text-sm transition-colors duration-300 select-none">
                 {row[0]?.label.split('-')[0]}
               </div>
             </div>
