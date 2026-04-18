@@ -47,5 +47,12 @@ La función `suggest(cantidad)` implementa una búsqueda inteligente:
    ```
 4. Abrir en el navegador: `http://localhost:3000`
 
+## 🚀 Despliegue en Vercel
+Este proyecto está optimizado para funcionar en **Vercel** sin configuraciones adicionales complejas:
+1. Sube el código a un repositorio de GitHub.
+2. Importa el proyecto en el dashboard de Vercel.
+3. El sistema detectará automáticamente **Next.js** y configurará los comandos de build.
+4. Las variables de entorno no son requeridas para esta versión estática/determinista.
+
 ---
 **Desarrollado para la evaluación parcial de Fundamentos de Programación Web.**
